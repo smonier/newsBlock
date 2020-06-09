@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content xmlns:j="http://www.jahia.org/jahia/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0">
+   <modules jcr:primaryType="jnt:modules">
+      <newsblock j:dependencies="bootstrap4-components bootstrap4-core default news"
+                 j:modulePriority="0"
+                 j:moduleType="module"
+                 j:title="newsBlock"
+                 jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                 jcr:primaryType="jnt:module">
+         <sources jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                  jcr:primaryType="jnt:moduleVersionFolder"
+                  j:staticMountPointProviderKey="module-newsblock-1.0-SNAPSHOT">
+            <src jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                 jcr:primaryType="jnt:folder">
+               <main jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                     jcr:primaryType="jnt:folder">
+                  <resources jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                             jcr:primaryType="jnt:folder">
+                     <css jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                          jcr:primaryType="jnt:cssFolder">
+                        <featuredNewsBlock.css jcr:primaryType="jnt:cssFile"/>
+                        <portfolio.css jcr:primaryType="jnt:cssFile"/>
+                     </css>
+                     <newsBlocknt_newsBlock jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                                            jcr:primaryType="jnt:nodeTypeFolder">
+                        <html jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                              jcr:primaryType="jnt:templateTypeFolder">
+                           <newsBlock.featuredNewsBlock.jsp jcr:primaryType="jnt:viewFile"/>
+                           <newsBlock.newsCarousel.jsp jcr:primaryType="jnt:viewFile"/>
+                           <newsBlock.newsFilter.jsp jcr:primaryType="jnt:viewFile"/>
+                        </html>
+                     </newsBlocknt_newsBlock>
+                     <META-INF jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                               jcr:primaryType="jnt:metaInfFolder">
+                        <definitions.cnd jcr:primaryType="jnt:definitionFile"/>
+                     </META-INF>
+                     <jnt_news jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                               jcr:primaryType="jnt:nodeTypeFolder">
+                        <html jcr:mixinTypes="jmix:hasExternalProviderExtension"
+                              jcr:primaryType="jnt:templateTypeFolder">
+                           <news.card-img-bottomtext.jsp jcr:mixinTypes="jmix:sourceControl"
+                                                         jcr:primaryType="jnt:viewFile"
+                                                         scmStatus="added"/>
+                           <news.card.jsp jcr:mixinTypes="jmix:sourceControl"
+                                          jcr:primaryType="jnt:viewFile"
+                                          scmStatus="added"/>
+                           <news.headlineBanner.jsp jcr:primaryType="jnt:viewFile"/>
+                           <news.featuredCarousel.jsp jcr:primaryType="jnt:viewFile"/>
+                           <news.card-fulltext.jsp jcr:mixinTypes="jmix:sourceControl"
+                                                   jcr:primaryType="jnt:viewFile"
+                                                   scmStatus="added"/>
+                        </html>
+                     </jnt_news>
+                  </resources>
+               </main>
+            </src>
+         </sources>
+         <portlets jcr:primaryType="jnt:portletFolder"/>
+         <files jcr:primaryType="jnt:folder"/>
+         <contents jcr:primaryType="jnt:contentFolder"/>
+         <templates j:rootTemplatePath="/base" jcr:primaryType="jnt:templatesFolder">
+            <files jcr:primaryType="jnt:folder"/>
+            <contents jcr:primaryType="jnt:contentFolder"/>
+            <base j:hiddenTemplate="false" jcr:primaryType="jnt:template">
+               <j:translation_en jcr:language="en"
+                                 jcr:mixinTypes="mix:title"
+                                 jcr:primaryType="jnt:translation"
+                                 jcr:title="base"/>
+               <news j:applyOn="jnt:news"
+                     j:defaultTemplate="true"
+                     j:hiddenTemplate="false"
+                     j:priority="99999"
+                     jcr:primaryType="jnt:contentTemplate">
+                  <j:translation_en jcr:language="en"
+                                    jcr:mixinTypes="mix:title"
+                                    jcr:primaryType="jnt:translation"
+                                    jcr:title="news"/>
+                  <pagecontent jcr:primaryType="jnt:contentList">
+                     <layout-and-grid grid="8_4"
+                                      gridLayout="fixed-width"
+                                      jcr:mixinTypes="bootstrap4mix:createContainer bootstrap4mix:createRow bootstrap4mix:createSection bootstrap4mix:predefinedGrid"
+                                      jcr:primaryType="bootstrap4nt:grid"
+                                      rowHorizontalAlignment="default"
+                                      rowVerticalAlignment="default"
+                                      sectionElement="section"
+                                      typeOfGrid="predefinedGrid">
+                        <layout-and-grid-main jcr:primaryType="jnt:contentList">
+                           <main-resource-display j:mainResourceView="card-fulltext"
+                                                  jcr:primaryType="jnt:mainResourceDisplay"/>
+                        </layout-and-grid-main>
+                        <layout-and-grid-side jcr:primaryType="jnt:contentList">
+                           <plus-dactualites-pour-vous hideViewedNews="true"
+                                                       jcr:primaryType="pqcnt:personalizedNewsRetriever"
+                                                       maxNews="4"
+                                                       newsDateLastDays="30">
+                              <j:translation_en jcr:language="en"
+                                                jcr:mixinTypes="mix:title"
+                                                jcr:primaryType="jnt:translation"
+                                                jcr:title="Plus d'actualités pour vous"/>
+                           </plus-dactualites-pour-vous>
+                        </layout-and-grid-side>
+                     </layout-and-grid>
+                  </pagecontent>
+                  <settings-template-link jcr:primaryType="jnt:templateLink"/>
+               </news>
+            </base>
+         </templates>
+      </newsblock>
+   </modules>
+</content>

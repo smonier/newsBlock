@@ -1,0 +1,17 @@
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+<newsBlocknt = 'http://www.jahia.org/newsBlock/nt/1.0'>
+<newsBlockmix = 'http://www.jahia.org/newsBlock/mix/1.0'>
+
+[newsBlockmix:newsBlock] > jmix:droppableContent, jmix:editorialContent mixin
+
+[newsBlocknt:newsBlock] > jnt:content, mix:title, newsBlockmix:newsBlock
+- bannerText (string, richtext) internationalized
+- maxNews (long) = 6 indexed=no
+- filter (weakreference, category[autoSelectParent=false]) multiple
+
+
+[newsBlockmix:featuredNews] mixin
+ extends = jnt:news
+ itemtype = content
+ - featuredNews (boolean)
