@@ -62,7 +62,7 @@
 <c:set var="myCat" value=""/>
 <c:if test="${!empty Categories }">
     <c:forEach items="${Categories}" var="category">
-        <c:set var="myCat" value="${myCat} ${category.node.displayableName}"/>
+        <c:set var="myCat" value="${myCat} ${category.node.name}"/>
     </c:forEach>
 </c:if>
 <c:set var="myTags" value=""/>
@@ -73,7 +73,7 @@
 </c:if>
 
 
-<div class="card bg-dark text-white mb-2 ${myCat} ${myTags}" style="width:100%">
+<div class="card bg-dark text-white px-2 ${myCat} ${myTags}">
     <c:if test="${not empty newsImage}">
         <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
         <div class="newsImg">

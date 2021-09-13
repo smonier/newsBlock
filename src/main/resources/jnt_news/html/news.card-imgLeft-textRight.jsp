@@ -42,7 +42,7 @@
                 <p class="card-text small">${functions:abbreviate(functions:removeHtmlTags(currentNode.properties.desc.string),200,250,'...')}</p>
                 <i class="fa fa-calendar-check-o" aria-hidden="true"></i> <small class="text-muted"><fmt:formatDate value="${newsDate.date.time}" pattern="MMM dd, yyyy"/></small>
                 <a href="<c:url value='${url.base}${currentNode.path}.html'/>" class="btn btn-outline-primary mb-3 btn-sm"
-                   style="float:right">SELEBIHNYA</a>
+                   style="float:right">READ MORE</a>
             </div>
         </div>
     </div>

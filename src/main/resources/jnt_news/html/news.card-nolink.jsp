@@ -9,7 +9,7 @@
 <%@ taglib prefix="query" uri="http://www.jahia.org/tags/queryLib" %>
 <%@ taglib prefix="utility" uri="http://www.jahia.org/tags/utilityLib" %>
 <%@ taglib prefix="s" uri="http://www.jahia.org/tags/search" %>
-    <%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
+<%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
 <%--@elvariable id="out" type="java.io.PrintWriter"--%>
 <%--@elvariable id="script" type="org.jahia.services.render.scripting.Script"--%>
 <%--@elvariable id="scriptInfo" type="java.lang.String"--%>
@@ -18,9 +18,9 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 
+
 <jcr:nodeProperty node="${currentNode}" name="image" var="newsImage"/>
 <jcr:nodeProperty node="${currentNode}" name="jcr:title" var="newsTitle"/>
-<c:set var="newsImage" value="${currentNode.properties.image}"/>
 <jcr:nodeProperty node="${currentNode}" name="j:defaultCategory" var="Categories"/>
 <jcr:nodeProperty node="${currentNode}" name="jcr:uuid" var="uuid"/>
 <jcr:nodeProperty node="${currentNode}" name="j:tagList" var="newsTags"/>
@@ -38,22 +38,15 @@
     </c:forEach>
 </c:if>
 
-<div class="card mb-2  ${myTags} ${myCat}" style="width:100%">
-  <c:if test="${not empty newsImage}">
-        <jahia:addCacheDependency node="${newsImage.node}" />
+<div class="card w-100 mh-50 ${myTags} ${myCat}">
+    <c:if test="${not empty newsImage}">
         <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
-        <div class="newsImg">
-            <a href="<c:url value='${url.base}${currentNode.path}.html'/>">
-                
-                        <img class="card-img-top" src="${imageUrl}" alt=""${newsTitle}" width="100%">
-                   
-            </a>
-        </div>
+        <img class="card-img-top" src="${url.files}${newsImage.node.path}" alt="${newsTitle}">
     </c:if>
-  <div class="card-body">
-    <h4 class="card-title">${fn:escapeXml(newsTitle.string)}</h4>
-    <p class="card-text">${functions:abbreviate(functions:removeHtmlTags(currentNode.properties.desc.string),400,450,'...')}</p>
-    <a href="<c:url value='${url.base}${currentNode.path}.html'/>" class="btn btn-primary">Learn More</a>
-  </div>
+    <div class="card-img-overlay h-100 d-flex flex-column justify-content-end bg-light text-dark opacity-3">
+        <div class="card-body">
+            <h5 class="card-title">${fn:escapeXml(newsTitle.string)}</h5>
+            <p class="card-text">${functions:abbreviate(functions:removeHtmlTags(currentNode.properties.desc.string),400,450,'...')}</p>
+        </div>
+    </div>
 </div>
-

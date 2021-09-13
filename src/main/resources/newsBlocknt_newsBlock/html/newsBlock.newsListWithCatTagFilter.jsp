@@ -49,79 +49,79 @@
 <!-- Portfolio Grid Section -->
 
 <div class="animate-grid">
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <h2 class="section-heading">${title}</h2>
-            <h3 class="section-subheading text-muted">${bannerText}</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">${title}</h2>
+                <h3 class="section-subheading text-muted">${bannerText}</h3>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-3">
+        <div class="row">
+            <div class="col-3">
 
-            <div class="card categories">
-                <div class="card-body">
-                    <h5 class="card-title">Categories</h5>
-                    <ul class="list-menu">
-                        <li><a href="#" data-filter="*">All</a></li>
+                <div class="card categories">
+                    <div class="card-body">
+                        <h5 class="card-title">Categories</h5>
+                        <ul class="list-menu">
+                            <li><a href="#" data-filter="*">All</a></li>
 
 
-                        <script language="JavaScript">
-                            var categories = [];
-                            <c:forEach items="${newsList.nodes}" var="news" varStatus="status">
-                            <jcr:nodeProperty node="${news}" var="newsCategories" name="j:defaultCategory"/>
-                            <c:if test="${!empty newsCategories}">
-                            <c:forEach items="${newsCategories}" var="category">
-                            categories.push("${category.node.displayableName}");
-                            </c:forEach>
-                            </c:if>
-                            </c:forEach>
-                            var uniqueCategories = [];
-                            $.each(categories, function (i, el) {
-                                if ($.inArray(el, uniqueCategories) === -1) uniqueCategories.push(el);
-                            });
+                            <script language="JavaScript">
+                                var categories = [];
+                                <c:forEach items="${newsList.nodes}" var="news" varStatus="status">
+                                <jcr:nodeProperty node="${news}" var="newsCategories" name="j:defaultCategory"/>
+                                <c:if test="${!empty newsCategories}">
+                                <c:forEach items="${newsCategories}" var="category">
+                                categories.push("${category.node.displayableName}");
+                                </c:forEach>
+                                </c:if>
+                                </c:forEach>
+                                var uniqueCategories = [];
+                                $.each(categories, function (i, el) {
+                                    if ($.inArray(el, uniqueCategories) === -1) uniqueCategories.push(el);
+                                });
 
-                            for (var j = 0; j < uniqueCategories.length; j++) {
-                                document.write('<li><a href="#" data-filter=".' + uniqueCategories[j] + '">' + uniqueCategories[j] + '<span class="badge badge-pill badge-light float-right">' + countInArray(categories, uniqueCategories[j]) + '</span></a></li>');
-                            }
-                        </script>
+                                for (var j = 0; j < uniqueCategories.length; j++) {
+                                    document.write('<li><a href="#" data-filter=".' + uniqueCategories[j] + '">' + uniqueCategories[j] + '<span class="badge badge-pill badge-light float-right">' + countInArray(categories, uniqueCategories[j]) + '</span></a></li>');
+                                }
+                            </script>
 
-                        <h5 class="card-title mt-4">Tags</h5>
+                            <h5 class="card-title mt-4">Tags</h5>
 
-                        <script language="JavaScript">
-                            var tags = [];
-                            <c:forEach items="${newsList.nodes}" var="news" varStatus="status">
-                            <jcr:nodeProperty node="${news}" var="newsTags" name="j:tagList"/>
-                            <c:if test="${!empty newsTags}">
-                            <c:forEach items="${newsTags}" var="tag">
-                            tags.push("${tag.string}");
-                            </c:forEach>
-                            </c:if>
-                            </c:forEach>
-                            var uniqueTags = [];
-                            $.each(tags, function (i, el) {
-                                if ($.inArray(el, uniqueTags) === -1) uniqueTags.push(el);
-                            });
+                            <script language="JavaScript">
+                                var tags = [];
+                                <c:forEach items="${newsList.nodes}" var="news" varStatus="status">
+                                <jcr:nodeProperty node="${news}" var="newsTags" name="j:tagList"/>
+                                <c:if test="${!empty newsTags}">
+                                <c:forEach items="${newsTags}" var="tag">
+                                tags.push("${tag.string}");
+                                </c:forEach>
+                                </c:if>
+                                </c:forEach>
+                                var uniqueTags = [];
+                                $.each(tags, function (i, el) {
+                                    if ($.inArray(el, uniqueTags) === -1) uniqueTags.push(el);
+                                });
 
-                            for (var j = 0; j < uniqueTags.length; j++) {
-                                document.write('<li><a href="#" data-filter=".' + uniqueTags[j] + '" style="text-transform: capitalize;">' + uniqueTags[j] + '<span class="badge badge-pill badge-light float-right">' + countInArray(tags, uniqueTags[j]) + '</span></a></li>');
-                            }
-                        </script>
-                    </ul>
+                                for (var j = 0; j < uniqueTags.length; j++) {
+                                    document.write('<li><a href="#" data-filter=".' + uniqueTags[j] + '" style="text-transform: capitalize;">' + uniqueTags[j] + '<span class="badge badge-pill badge-light float-right">' + countInArray(tags, uniqueTags[j]) + '</span></a></li>');
+                                }
+                            </script>
+                        </ul>
+                    </div>
+                </div> <!-- card.// -->
+
+            </div>
+            <div class="col-9">
+                <div class="card-deck gallary-thumbs">
+                    <c:forEach items="${newsList.nodes}" var="news" varStatus="status">
+                        <template:module node="${news}" view="card"/>
+                    </c:forEach>
                 </div>
-            </div> <!-- card.// -->
-
-        </div>
-        <div class="col-9">
-            <div class="card-deck gallary-thumbs">
-                <c:forEach items="${newsList.nodes}" var="news" varStatus="status">
-                    <template:module node="${news}" view="card"/>
-                </c:forEach>
             </div>
         </div>
     </div>
 </div>
-
 
 <c:if test="${renderContext.editMode}">
     <%--

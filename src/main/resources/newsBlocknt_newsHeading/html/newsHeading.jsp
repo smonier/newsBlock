@@ -9,7 +9,6 @@
 <%@ taglib prefix="query" uri="http://www.jahia.org/tags/queryLib" %>
 <%@ taglib prefix="utility" uri="http://www.jahia.org/tags/utilityLib" %>
 <%@ taglib prefix="s" uri="http://www.jahia.org/tags/search" %>
-<%@ taglib prefix="cl" uri="http://www.jahia.org/tags/cloudinary" %>
 
 <%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
 <%--@elvariable id="out" type="java.io.PrintWriter"--%>
@@ -23,11 +22,12 @@
 <%--<template:addResources type="css" resources="bootstrap.min.css" />--%>
 <%--<template:addResources type="javascript" resources="jquery.min.js,popper.min.js,bootstrap.min.js"/>--%>
 <c:set var="bindedComponent" value="${ui:getBindedComponent(currentNode, renderContext, 'j:bindedComponent')}"/>
-<c:if test="${not empty bindedComponent && jcr:isNodeType(bindedComponent, 'jnt:news, jnt:heading')}">
+<c:if test="${not empty bindedComponent && jcr:isNodeType(bindedComponent, 'jnt:news, newsBlocknt:newsHeading')}">
     <c:set var="targetProps" value="${bindedComponent.properties}"/>
 </c:if>
 <c:set var="title" value="${targetProps['jcr:title'].string}"/>
 <c:set var="image" value="${targetProps['image']}"/>
+<c:set var="categories" value="${targetProps['j:defaultCategory']}"/>
 
 
 <div class="inner-page">
@@ -37,8 +37,14 @@
                 <div class="col-md-8 text-center col-sm-12 pt-5 element-animate">
                     <%-- --%>
                     <h1 class="pt-5">${title}</h1>
-                    <%--                    <h1 class="pt-5"><span>About Us</span></h1>--%>
-                    <%--                    <p class="mb-5 w-75">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero sit, saepe? Rem, libero repellendus eum.</p>--%>
+                    <c:if test="${categories != null}">
+                        <c:forEach items="${categories}" var="category">
+                            <i class="fa fa-tag" aria-hidden="true"></i>
+                            <span class="categorytitle mr-3">
+                                    ${category.node.displayableName}
+                            </span>
+                        </c:forEach>
+                    </c:if>
                 </div>
             </div>
         </div>
