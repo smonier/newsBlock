@@ -22,9 +22,10 @@
 <jcr:nodeProperty node="${currentNode}" name="jcr:title" var="newsTitle"/>
 <c:set var="newsImage" value="${currentNode.properties.image}"/>
 <jcr:nodeProperty node="${currentNode}" name="date" var="newsDate"/>
+<jcr:nodeProperty node="${currentNode}" name='jcr:uuid' var="uuid"/>
 
 
-<div class="card mb-3">
+<div class="card mb-3" id="${uuid}">
     <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
     <img src="${imageUrl}" class="card-img" alt="${fn:escapeXml(newsTitle)}" style="max-height:200px;filter: brightness(50%);">
 

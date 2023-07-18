@@ -27,7 +27,7 @@
 </c:if>
 
 <c:set var="categories" value="${targetProps['j:defaultCategory']}"/>
-
+<c:set var="mainItemId" value="${targetProps['jcr:uuid']}"/>
 
 
 <%-- Get parameters of the module --%>
@@ -55,13 +55,16 @@
 <query:definition var="listQuery" limit="${currentResource.moduleParams.queryLoadAllUnsorted == 'true' ? -1 : nbOfResult.long}">
     <query:selector nodeTypeName="${type.string}"/>
     <query:descendantNode path="${startNode.path}"/>
-    <query:or>
-        <c:forEach var="filter" items="${categories}">
-            <c:if test="${not empty filter.string}">
-                <query:equalTo propertyName="j:defaultCategory" value="${filter.string}"/>
-            </c:if>
-        </c:forEach>
-    </query:or>
+        <query:and>
+            <query:notEqualTo propertyName="jcr:uuid" value="${mainItemId}"/>
+        </query:and>
+        <query:or>
+            <c:forEach var="filter" items="${categories}">
+                <c:if test="${not empty filter.string}">
+                    <query:equalTo propertyName="j:defaultCategory" value="${filter.string}"/>
+                </c:if>
+            </c:forEach>
+        </query:or>
     <c:if test="${not currentResource.moduleParams.queryLoadAllUnsorted == 'true'}">
         <query:sortBy propertyName="${criteria.string}" order="${sortDirection.string}"/>
     </c:if>

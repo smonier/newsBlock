@@ -48,12 +48,12 @@
                                              jcr:title="Share This"/>
                         </share-this>
                         <listcontentfromcat j:criteria="jcr:lastModified"
-                                            j:sortDirection="asc"
+                                            j:sortDirection="desc"
                                             j:subNodesView="horizontal-card"
                                             j:type="jnt:news"
                                             jcr:primaryType="newsBlocknt:listContentFromCat"
                                             maxItems="5">
-                           <j:translation_en j:noResultsMessage="No news"
+                           <j:translation_en j:noResultsMessage="No Related News at this moment."
                                              jcr:language="en"
                                              jcr:mixinTypes="mix:title"
                                              jcr:primaryType="jnt:translation"

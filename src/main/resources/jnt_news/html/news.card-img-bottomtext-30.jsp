@@ -38,7 +38,7 @@
     </c:forEach>
 </c:if>
 
-<div class="card mb-2  ${myTags} ${myCat}" style="width:30%">
+<div class="card m-2 ${myTags} ${myCat}" style="width:30%">
     <c:if test="${not empty newsImage}">
         <jahia:addCacheDependency node="${newsImage.node}" />
         <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
