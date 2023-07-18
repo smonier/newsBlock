@@ -9,6 +9,8 @@
 <%@ taglib prefix="query" uri="http://www.jahia.org/tags/queryLib" %>
 <%@ taglib prefix="utility" uri="http://www.jahia.org/tags/utilityLib" %>
 <%@ taglib prefix="s" uri="http://www.jahia.org/tags/search" %>
+<%@ taglib prefix="user" uri="http://www.jahia.org/tags/user" %>
+
 <%--@elvariable id="currentNode" type="org.jahia.services.content.JCRNodeWrapper"--%>
 <%--@elvariable id="out" type="java.io.PrintWriter"--%>
 <%--@elvariable id="script" type="org.jahia.services.render.scripting.Script"--%>
@@ -22,20 +24,21 @@
 <jcr:nodeProperty node="${currentNode}" name="date" var="newsDate"/>
 <jcr:nodeProperty node="${currentNode}" name="desc" var="newsDesc"/>
 <jcr:nodeProperty node="${currentNode}" name="image" var="newsImage"/>
-<jcr:nodeProperty node="${currentNode}" name="jcr:lastModifiedBy" var="lastAuthor"/>
+    <jcr:nodeProperty node="${currentNode}" name="jcr:lastModifiedBy" var="lastAuthor"/>
 
 <jcr:nodeProperty node="${currentNode}" var="newsCategories" name="j:defaultCategory"/>
 <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
 <jahia:addCacheDependency node="${newsImage.node}" />
 
-<div class="card mt-3 mb-3">
+<div class="mt-3 mb-3">
   <h2 class="card-title ml-3">${fn:escapeXml(newsTitle.string)}</h2>
   <div class="card-text ml-3">
 
 
 
         <div class="newsMeta">
-          <i class="fa fa-user-circle" aria-hidden="true"></i> <small class="text-muted">by ${lastAuthor}</small> &nbsp;&nbsp;
+          <i class="fa fa-user-circle" aria-hidden="true"></i> <small class="text-muted">by <c:out value="${user:fullName(user:lookupUser(lastAuthor))}"/>
+        </small> &nbsp;&nbsp;
            <!-- <span class="categoryLabel"><fmt:message key='label.categories'/> :</span> -->
               <c:if test="${!empty newsCategories }">
             <jcr:nodeProperty node="${currentNode}" name="j:defaultCategory" var="cat"/>

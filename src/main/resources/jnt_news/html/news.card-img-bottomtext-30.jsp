@@ -21,26 +21,39 @@
 <jcr:nodeProperty node="${currentNode}" name="image" var="newsImage"/>
 <jcr:nodeProperty node="${currentNode}" name="jcr:title" var="newsTitle"/>
 <c:set var="newsImage" value="${currentNode.properties.image}"/>
-<jcr:nodeProperty node="${currentNode}" name="date" var="newsDate"/>
+<jcr:nodeProperty node="${currentNode}" name="j:defaultCategory" var="Categories"/>
+<jcr:nodeProperty node="${currentNode}" name="jcr:uuid" var="uuid"/>
+<jcr:nodeProperty node="${currentNode}" name="j:tagList" var="newsTags"/>
 
+<c:set var="myCat" value=""/>
+<c:if test="${!empty Categories }">
+    <c:forEach items="${Categories}" var="category">
+        <c:set var="myCat" value="${myCat} ${category.node.name}"/>
+    </c:forEach>
+</c:if>
+<c:set var="myTags" value=""/>
+<c:if test="${!empty newsTags }">
+    <c:forEach items="${newsTags}" var="tag">
+        <c:set var="myTags" value="${myTags} ${tag.string}"/>
+    </c:forEach>
+</c:if>
 
-<div class="card mb-3">
-    <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
-    <img src="${imageUrl}" class="card-img" alt="${fn:escapeXml(newsTitle)}" style="max-height:200px;filter: brightness(50%);">
+<div class="card mb-2  ${myTags} ${myCat}" style="width:30%">
+    <c:if test="${not empty newsImage}">
+        <jahia:addCacheDependency node="${newsImage.node}" />
+        <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
+        <div class="newsImg">
+            <a href="<c:url value='${url.base}${currentNode.path}.html'/>">
 
-    <div class="" >
-        <h6 class="card-title text-white text-img-overlay">${fn:escapeXml(newsTitle.string)}</h6>
-        <p class="card-text mt-auto" style="position: absolute; top: 165px; right: 10px; text-align: right;"><small class="text-white"><fmt:formatDate value="${newsDate.date.time}"
-                                                                       pattern="MMM dd, yyyy"/></small></p>
-    </div>
+                <img class="card-img-top" src="${imageUrl}" alt=""${newsTitle}" width="100%">
 
+            </a>
+        </div>
+    </c:if>
     <div class="card-body">
-        <p class="card-text" style="line-height:1.2">${functions:abbreviate(functions:removeHtmlTags(currentNode.properties.desc.string),100,150,'...')}</p>
-        <a href="<c:url value='${url.base}${currentNode.path}.html'/>" class="btn btn-outline-primary btn-sm"
-           style="float:right">Read More</a>
+        <h4 class="card-title">${fn:escapeXml(newsTitle.string)}</h4>
+        <p class="card-text">${functions:abbreviate(functions:removeHtmlTags(currentNode.properties.desc.string),400,450,'...')}</p>
+        <a href="<c:url value='${url.base}${currentNode.path}.html'/>" class="btn btn-primary">Learn More</a>
     </div>
-
-
 </div>
-
 
