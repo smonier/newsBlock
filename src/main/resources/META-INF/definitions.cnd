@@ -37,3 +37,7 @@
  - j:noResultsMessage (string) i18n indexed=no
  - j:subNodesView (string, choicelist[templates=subnodes,resourceBundle,image,dependentProperties='j:type']) nofulltext itemtype = layout
 
+[newsBlocknt:testimonialBlock] > jnt:content, mix:title, newsBlockmix:newsBlock
+- backgroundBanner (weakreference, picker[type='image'])
+- quote (string, richtext) internationalized
+- quoteAuthor (string)
