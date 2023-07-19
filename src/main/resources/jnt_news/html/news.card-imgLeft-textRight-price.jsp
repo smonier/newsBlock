@@ -18,9 +18,7 @@
 <%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 
-<jcr:nodeProperty node="${currentNode}" name="image" var="newsImage"/>
 <jcr:nodeProperty node="${currentNode}" name="jcr:title" var="newsTitle"/>
-<c:set var="newsImage" value="${currentNode.properties.image}"/>
 <jcr:nodeProperty node="${currentNode}" name="date" var="newsDate"/>
 
 <c:set var="rand">
@@ -43,7 +41,10 @@
 <div class="card mb-3">
     <div class="row no-gutters">
         <div class="col-md-6">
-            <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
+            <c:set var="mediaNode" value="${currentNode.properties['image'].node}"/>
+            <%@ include file="../../getMediaURL.jspf" %>
+            <c:set var="imageUrl" value="${mediaURL}"/>
+            <template:addCacheDependency node="${mediaNode}"/>
 
             <a href="<c:url value='${url.base}${currentNode.path}.html'/>">
                 <img class="img-fluid" src="${imageUrl}" alt=${fn:escapeXml(newsTitle)}">

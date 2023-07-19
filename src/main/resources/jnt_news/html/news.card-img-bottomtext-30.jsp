@@ -40,8 +40,10 @@
 
 <div class="card m-2 ${myTags} ${myCat}" style="width:30%">
     <c:if test="${not empty newsImage}">
-        <jahia:addCacheDependency node="${newsImage.node}" />
-        <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
+        <c:set var="mediaNode" value="${currentNode.properties['image'].node}"/>
+        <%@ include file="../../getMediaURL.jspf" %>
+        <c:set var="imageUrl" value="${mediaURL}"/>
+        <template:addCacheDependency node="${mediaNode}"/>
         <div class="newsImg">
             <a href="<c:url value='${url.base}${currentNode.path}.html'/>">
 

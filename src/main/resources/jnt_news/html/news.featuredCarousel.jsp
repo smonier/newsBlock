@@ -31,8 +31,10 @@
         <!--thumbnail img-->
         <div class="ratio_left-cover-1 image-wrapper">
             <c:if test="${not empty newsImage}">
-                <jahia:addCacheDependency node="${newsImage.node}" />
-                <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
+                <c:set var="mediaNode" value="${currentNode.properties['image'].node}"/>
+                <%@ include file="../../getMediaURL.jspf" %>
+                <c:set var="imageUrl" value="${mediaURL}"/>
+                <template:addCacheDependency node="${mediaNode}"/>
                 <img class="img-fluid w-100" src="${imageUrl}" alt="${newsTitle.string}">
             </c:if>
         </div>

@@ -40,8 +40,10 @@
 
 <div class="card w-100 mh-50 ${myTags} ${myCat}">
     <c:if test="${not empty newsImage}">
-        <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
-        <img class="card-img-top" src="${url.files}${newsImage.node.path}" alt="${newsTitle}">
+        <c:set var="mediaNode" value="${currentNode.properties['image'].node}"/>
+        <%@ include file="../../getMediaURL.jspf" %>
+        <c:set var="imageUrl" value="${mediaURL}"/>
+        <template:addCacheDependency node="${mediaNode}"/>        <img class="card-img-top" src="${url.files}${newsImage.node.path}" alt="${newsTitle}">
     </c:if>
     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end bg-light text-dark opacity-3">
         <div class="card-body">

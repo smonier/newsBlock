@@ -19,6 +19,7 @@
 [newsBlockmix:attachedDocument] mixin
  extends = jnt:news
  itemtype = content
+ - documentName (string)
  - referenceDocument (weakreference, picker[type='file'])
 
   

@@ -29,9 +29,13 @@
 <c:set var="image" value="${targetProps['image']}"/>
 <c:set var="categories" value="${targetProps['j:defaultCategory']}"/>
 
+<c:set var="mediaNode" value="${targetProps['image'].node}"/>
+<%@ include file="../../getMediaURL.jspf" %>
+<c:set var="imageUrl" value="${mediaURL}"/>
+<template:addCacheDependency node="${mediaNode}"/>
 
 <div class="inner-page">
-    <div class="slider-item" style="background-image: url('${image.node.url}');">
+    <div class="slider-item" style="background-image: url('${imageUrl}');">
         <div class="container">
             <div class="row slider-text align-items-center justify-content-center">
                 <div class="col-md-8 text-center col-sm-12 pt-5 element-animate">

@@ -75,8 +75,10 @@
 
 <div class="card bg-dark text-white px-2 ${myCat} ${myTags}">
     <c:if test="${not empty newsImage}">
-        <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
-        <div class="newsImg">
+        <c:set var="mediaNode" value="${currentNode.properties['image'].node}"/>
+        <%@ include file="../../getMediaURL.jspf" %>
+        <c:set var="imageUrl" value="${mediaURL}"/>
+        <template:addCacheDependency node="${mediaNode}"/>        <div class="newsImg">
             <a href="<c:url value='${url.base}${currentNode.path}.html'/>">
                 <img class="card-img" src="${imageUrl}" alt="${newsTitle}" width="100%"/>
             </a>
