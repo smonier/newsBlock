@@ -64,9 +64,10 @@
                         <c:set var="myVar" value="${myVar} ${category.node.displayableName}" />
                     </c:forEach>
                 </c:if>
-                <jcr:nodeProperty node="${news}" name="image" var="newsImage"/>
-                <c:url value="${url.files}${newsImage.node.path}" var="imageUrl"/>
-
+                <c:set var="mediaNode" value="${currentNode.properties['image'].node}"/>
+                <%@ include file="../../getMediaURL.jspf" %>
+                <c:set var="imageUrl" value="${mediaURL}"/>
+                <template:addCacheDependency node="${mediaNode}"/>
             <div class="item px-2">
                 <div class="fh5co_hover_news_img">
                     <div class="fh5co_news_img"><img src="${imageUrl}" alt=""/></div>
