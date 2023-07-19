@@ -1,0 +1,12 @@
+{
+    "name": "jnt:news",
+    "fields": [
+      {
+        "name": "image",
+        "selectorType": "DamSelector",
+        "selectorOptionsMap": {
+          "type": "image"
+        }
+      }
+    ]
+  }
