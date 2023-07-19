@@ -15,6 +15,12 @@
  extends = jnt:news
  itemtype = content
  - featuredNews (boolean)
+
+[newsBlockmix:attachedDocument] mixin
+ extends = jnt:news
+ itemtype = content
+ - referenceDocument (weakreference, picker[type='file'])
+
   
 [newsBlocknt:newsHeading] > jnt:content, jmix:bindedComponent, newsBlockmix:newsBlock
   
