@@ -73,10 +73,38 @@
     max-width: 45%;
     margin: 0 auto;
 }
+
+.testimonialQuote.bottom {
+    bottom: initial;
+    left: initial;
+    right: 22%;
+    transform: rotate(180deg);
+    top: 35%;
+    font-size: 14rem;
+    color: #fff;
+    position: absolute;
+    letter-spacing: -19px;
+    line-height: 1rem;
+}
+
+.testimonialQuote.top {
+    bottom: initial;
+    left: initial;
+    font-size: 14rem;
+    color: #fff;
+    position: absolute;
+    letter-spacing: -19px;
+    bottom: 86%;
+    line-height: 1rem;
+    left: 4%;
+}
 </style>
 <div class="banner">
     <div class="testimonialItem">
-    <div class="quote">${quote}</div>
+    <span class="testimonialQuote top">"</span>
+        <div class="quote">${quote}</div>
+    <span class="testimonialQuote bottom">"</span>
+    <p>&nbsp;</p><br/>
     <div class="author">${quoteAuthor}</div>
 </div>
 </div>
