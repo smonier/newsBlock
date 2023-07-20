@@ -52,7 +52,7 @@
                                             j:subNodesView="horizontal-card"
                                             j:type="jnt:news"
                                             jcr:primaryType="newsBlocknt:listContentFromCat"
-                                            maxItems="5">
+                                            maxItems="3">
                            <j:translation_en j:noResultsMessage="No Related News at this moment."
                                              jcr:language="en"
                                              jcr:mixinTypes="mix:title"

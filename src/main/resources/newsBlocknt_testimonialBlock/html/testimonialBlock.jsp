@@ -75,6 +75,7 @@
 }
 
 .testimonialQuote.bottom {
+    font-family: serif;
     bottom: initial;
     left: initial;
     right: 22%;
@@ -88,6 +89,7 @@
 }
 
 .testimonialQuote.top {
+    font-family: serif;
     bottom: initial;
     left: initial;
     font-size: 14rem;
