@@ -103,9 +103,7 @@
 </style>
 <div class="banner">
     <div class="testimonialItem">
-    <span class="testimonialQuote top">"</span>
         <div class="quote">${quote}</div>
-    <span class="testimonialQuote bottom">"</span>
     <p>&nbsp;</p><br/>
     <div class="author">${quoteAuthor}</div>
 </div>
