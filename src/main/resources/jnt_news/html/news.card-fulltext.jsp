@@ -92,6 +92,7 @@
     </c:choose>
     <p>
     <c:if test="${not empty referenceDocument}">
+        <img src="https://www.edmond-de-rothschild.com/Style%20Library/edrcom_custom/images/paperclip.png" alt="paperclip">&nbsp;
         <a href="${referenceDocument.node.url}"
            title="${fn:escapeXml(documentName)}">
                <c:out value="${documentName}" />
