@@ -41,3 +41,13 @@
 - backgroundBanner (weakreference, picker[type='image'])
 - quote (string, richtext) internationalized
 - quoteAuthor (string)
+
+
+[newsBlocknt:animatedItem] > jnt:content, mix:title
+ - icon (string)
+ - number (long)  = 10000 indexed=no mandatory
+ - label (string) i18n
+
+[newsBlocknt:animatedBlock] > jnt:content, mix:title, newsBlockmix:newsBlock, jmix:list
+ - bannerText (string, richtext) internationalized
+ + * (newsBlocknt:animatedItem)
