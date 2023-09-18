@@ -27,7 +27,7 @@
 
 
 <div class="counter">
-    <div class="icon mb-3"><span class="${icon} text-primary"></span></div>
+    <div class="icon mb-3"><span class="ion-ios-${icon} text-primary"></span></div>
     <h3 data-target="${number}" class="count">0</h3>
     <h6>${label}</h6>
 </div>
